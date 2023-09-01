@@ -1,0 +1,24 @@
+/* styles.css */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(7, 100px);
+  grid-template-rows: repeat(6, auto);
+  column-gap: 10px; /* Gap between columns */
+  row-gap: 5px; /* Set a smaller gap between rows */
+}
+
+.grid-item {
+  border: 1px solid #333;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.grid-item > * {
+  position: absolute;
+}

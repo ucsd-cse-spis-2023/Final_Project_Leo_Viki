@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<h1>Connect 4</h1>
+
+<button type="button" id="playButton">Play</button>
+
+<p id="demo">Play.</p>
+
+<div class="grid-container" id="gridContainer">
+  <!-- JavaScript will populate the grid items here -->
+</div>
+
+<script>
+// JavaScript to populate the grid
+const gridContainer = document.getElementById("gridContainer");
+
+for (let i = 0; i < 42; i++) {
+  const gridItem = document.createElement("div");
+  gridItem.classList.add("grid-item");
+  gridContainer.appendChild(gridItem);
+}
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
