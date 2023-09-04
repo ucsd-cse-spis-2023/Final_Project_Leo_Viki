@@ -40,3 +40,7 @@
 .connect4-piece.red {
   background-color: red;
 }
+
+.connect4-piece.highlight {
+  background-color: #CCCC00		;
+}

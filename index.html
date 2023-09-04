@@ -7,11 +7,10 @@
 
 <h1>Connect 4</h1>
 
-<button type="button" id="playButton">Play</button>
+<button type="button" id="playButton" onclick="showGrid()">Play</button>
 
-<p id="demo">Play.</p>
 
-<div class="grid-container" id="gridContainer">
+<div class="grid-container" id="gridContainer" style="display: none;">
   <!-- JavaScript will populate the grid items here -->
 </div>
 
@@ -31,6 +30,12 @@ for (let i = 0; i < 42; i++) {
 
 
   gridContainer.appendChild(gridItem);
+}
+function showGrid() {
+  // Show the grid container
+  const gridContainer = document.getElementById("gridContainer");
+  gridContainer.style.display = "grid";
+  
 }
 </script>
 

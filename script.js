@@ -16,7 +16,25 @@ const gridItems = document.querySelectorAll(".grid-item");
 
 gridItems.forEach(gridItems => {
   gridItems.addEventListener('click', handleGridItemClick)
+  gridItems.addEventListener('mouseover', handleGridItemMouseOver)
 });
+
+function handleGridItemMouseOver(event) {
+  if (!event.target.classList.contains('filled')) {
+    const colIndex = event.target.id % numCols;
+    // Find the lowest empty cell in the selected column
+    const rowIndex = findLowestEmptyCell(colIndex);
+    for(let h = 0; h<numCols; h++) {
+      const daRow =findLowestEmptyCell(h)
+      const theOthers = gridItems[daRow* numCols + h]
+      theOthers.querySelector(".connect4-piece").classList.remove('highlight')
+    }
+    if (rowIndex !== -1) {
+      const highlightedCell = gridItems[rowIndex * numCols + colIndex]
+      highlightedCell.querySelector(".connect4-piece").classList.add('highlight')
+    }    
+  }
+}
 
 // Function to handle grid item click
 function handleGridItemClick(event) {
@@ -36,13 +54,17 @@ function handleGridItemClick(event) {
 
       lowestEmptyCell.classList.add('filled', `player-${playerturn}`);
       if (playerturn == 1) {
+        makeItFall(rowIndex,colIndex)
         lowestEmptyCell.querySelector(".connect4-piece").classList.add('blue');
         // Remove the 'red' class if it's present
         lowestEmptyCell.querySelector(".connect4-piece").classList.remove('red');
+        lowestEmptyCell.querySelector(".connect4-piece").classList.remove('highlight');
       } else {
+        makeItFall(rowIndex,colIndex)
         lowestEmptyCell.querySelector(".connect4-piece").classList.add('red');
         // Remove the 'blue' class if it's present
         lowestEmptyCell.querySelector(".connect4-piece").classList.remove('blue');
+        lowestEmptyCell.querySelector(".connect4-piece").classList.remove('highlight');
       }
       
       
@@ -65,6 +87,23 @@ function handleGridItemClick(event) {
     }
   }
 }
+function makeItFall(rowIndex, colIndex) {
+  for (let x = 0; x < rowIndex; x++) {
+    const theBlip = gridItems[x * numCols + colIndex].querySelector(".connect4-piece");
+    setTimeout(() => animate(theBlip), 20 * x); // Delay each animation by 1000ms (1 second)
+  }
+}
+
+function animate(cell) {
+  if (playerturn == 2) {
+    cell.classList.add('blue');
+    setTimeout(() => cell.classList.remove('blue'), 20); // Remove 'blue' class after 100ms
+  } else {
+    cell.classList.add('red');
+    setTimeout(() => cell.classList.remove('red'), 20); // Remove 'red' class after 100ms
+  } 
+}
+
 function findLowestEmptyCell(colIndex) {
   for (let row = numRows - 1; row >= 0; row--) {
     if (gameBoard[row][colIndex] === 0) {
