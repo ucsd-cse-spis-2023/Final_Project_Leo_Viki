@@ -22,6 +22,14 @@ const gridContainer = document.getElementById("gridContainer");
 for (let i = 0; i < 42; i++) {
   const gridItem = document.createElement("div");
   gridItem.classList.add("grid-item");
+  gridItem.id = i.toString()
+
+  const connect4Piece = document.createElement("div");
+  connect4Piece.classList.add("connect4-piece");
+  connect4Piece.id = i.toString()
+  gridItem.appendChild(connect4Piece);
+
+
   gridContainer.appendChild(gridItem);
 }
 </script>

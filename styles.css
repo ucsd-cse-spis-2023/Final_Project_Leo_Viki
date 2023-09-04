@@ -5,6 +5,7 @@
   grid-template-rows: repeat(6, auto);
   column-gap: 10px; /* Gap between columns */
   row-gap: 5px; /* Set a smaller gap between rows */
+  padding-left: 300px;
 }
 
 .grid-item {
@@ -21,4 +22,21 @@
 
 .grid-item > * {
   position: absolute;
+}
+
+.connect4-piece {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border-radius: 50%;
+  /*border: 1px solid #333 */
+}
+
+.connect4-piece.blue{
+  background-color: blue;
+}
+
+.connect4-piece.red {
+  background-color: red;
 }
