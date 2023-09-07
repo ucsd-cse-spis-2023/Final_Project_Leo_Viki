@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
+</head>
+<body>
+
+<h1>Connect 4</h1>
+
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Play</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="#" onclick="showGrid()">Player vs. Player</a>
+    <a href="#" id ="playerVsEasyBot" onclick="showGrid()">Player vs. Easy bot</a>
+    <a href="#" id = "playerVsMediumBot" onclick="showGrid()">Player vs. Mediium bot</a>
+    <a href="#" id = "playerVsImpossible" onclick="showGrid()">Player vs. Impossible</a>
+
+  </div>
+</div>
+
+<div class="grid-container" id="gridContainer" style="display: none;">
+  <!-- JavaScript will populate the grid items here -->
+</div>
+
+<script>
+// JavaScript to populate the grid
+const gridContainer = document.getElementById("gridContainer");
+
+
+for (let i = 0; i < 42; i++) {
+  const gridItem = document.createElement("div");
+  gridItem.classList.add("grid-item");
+  gridItem.id = i.toString()
+
+  const connect4Piece = document.createElement("div");
+  connect4Piece.classList.add("connect4-piece");
+  connect4Piece.id = i.toString()
+  gridItem.appendChild(connect4Piece);
+
+
+  gridContainer.appendChild(gridItem);
+}
+function showGrid() {
+  // Show the grid container
+  const gridContainer = document.getElementById("gridContainer");
+  gridContainer.style.display = "grid";
+  
+}
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+<script src="{{url_for('static', filename='script.js')}}"></script>
+<!-- <script src="../script.js"></script> -->
+</body>
+</html>
